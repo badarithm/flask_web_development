@@ -1,6 +1,7 @@
-from . import db
+from . import db, login_manager
+import uuid as uuid_lib
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from flask_login import UserMixin
 
 class Role(db.Model):
     __tablename__ = 'roles'
@@ -14,6 +15,9 @@ class Role(db.Model):
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
+    uuid = db.Column(db.String(36), unique=True, index=True, default=uuid_lib.uuid4(), nullable=True)
+    email = db.Column(db.String(255), unique=True, index=True, nullable=True)
+    email_hash = db.Column(db.String(128), unique=True, index=True, nullable=True)
     username = db.Column(db.String(255), unique=True, index=True)
     password_hash = db.Column(db.String(128))
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
@@ -31,3 +35,7 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %s>' % self.username
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
