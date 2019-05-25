@@ -1,0 +1,9 @@
+{%  import 'bootstrap/wtf.html' as wtf %}
+{% wtf.quick_form(form) %}
+
+{#this is equivalent to this one + more bs3 goodness#}
+{#<form method="POST">#}
+{#    {{ form.hidden_tag() }}#}
+{#    {{ form.name.label }} {{ form.name(id='my-text-field') }}#}
+{#    {{ form.submit() }}#}
+{#</form>#}
