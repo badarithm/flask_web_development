@@ -4,3 +4,4 @@ app/main/__pycache__
 .idea
 *.sqlite
 migrations/
+*.pyc
