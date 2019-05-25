@@ -4,7 +4,7 @@ from . import main
 from forms.name_form import NameForm
 from flask_login import login_required
 
-from .. import db
+# from .. import db
 from ..models import User
 
 @main.route('/', methods=['GET', 'POST'])
