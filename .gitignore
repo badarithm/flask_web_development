@@ -5,3 +5,4 @@ app/main/__pycache__
 *.sqlite
 migrations/
 *.pyc
+*.pyc
